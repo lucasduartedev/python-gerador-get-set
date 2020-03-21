@@ -1,5 +1,14 @@
 import PySimpleGUI as sg
 
+def gerador(palavra):
+    print('@property')
+    print('def {}(self):'.format(palavra))
+    print('    return self._{}'.format(palavra))
+    print('')
+    print('@{}.setter'.format(palavra))
+    print('def {}(self, {}):'.format(palavra, palavra))
+    print('    self._{} = {}'.format(palavra, palavra))
+
 # Definição do layout
 layout = [
     [
@@ -25,11 +34,12 @@ while True:
     if event in (None, 'btn_fechar'):
         break
 
-    if event in (None, 'btn_gerar'):
-        print('Teste')
-
-    # Pegar palavra
+    # Palavra informada
     palavra = values['palavra']
 
+    if event in (None, 'btn_gerar'):
+        gerador(palavra)
+
+    
 # Fechar janela
 window.close()
